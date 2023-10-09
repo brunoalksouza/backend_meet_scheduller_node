@@ -1,6 +1,4 @@
 const app = require("./app");
-const db = require("./config/db");
-
 const port = 3001;
 
 app.get("/", (req, res) => {
