@@ -5,4 +5,6 @@ router.post("/registration", UserController.register);
 
 router.post("/login", UserController.login);
 
+router.post("/addevent", UserController.addEvent);
+
 module.exports = router;
