@@ -23,22 +23,6 @@ class UserService {
   static async generateToken(tokenData, secretKey, jwt_expire) {
     return jwt.sign(tokenData, secretKey, { expiresIn: jwt_expire });
   }
-
-  static async addEvent(title, description, date, formatedDate, start, end) {
-    try {
-      const createEvent = new EventsModel({
-        title,
-        description,
-        date,
-        formatedDate,
-        start,
-        end,
-      });
-      return await createEvent.save();
-    } catch (error) {
-      throw error;
-    }
-  }
 }
 
 module.exports = UserService;

@@ -42,21 +42,3 @@ exports.login = async (req, res, next) => {
   }
 };
 
-exports.addEvent = async (req, res, next) => {
-  try {
-    const { title, description, date, formatedDate, start, end } = req.body;
-
-    const event = await UserService.addEvent(
-      title,
-      description,
-      date,
-      formatedDate,
-      start,
-      end
-    );
-
-    res.json({ status: true, event });
-  } catch (error) {
-    throw error;
-  }
-};
