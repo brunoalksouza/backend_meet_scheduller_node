@@ -32,7 +32,10 @@ userSchema.pre("save", async function () {
 userSchema.methods.comparePassword = async function (userPassword) {
   try {
     const isMatch = await bycrypt.compare(userPassword, this.password);
-  } catch (error) {}
+    return isMatch;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const UserModel = db.model("users", userSchema);

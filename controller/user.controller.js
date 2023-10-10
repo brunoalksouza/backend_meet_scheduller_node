@@ -6,7 +6,7 @@ exports.register = async (req, res, next) => {
 
     const succesRes = await UserService.RegisterUser(email, password);
 
-    res.json({ status: true, succes: "User registered Succesfully" });
+    res.json({ status: true, succes: "user registered Succesfully" });
   } catch (error) {
     throw error;
   }
@@ -17,28 +17,27 @@ exports.login = async (req, res, next) => {
     const { email, password } = req.body;
     // console.log(user);
 
-    const User = await UserService.checkUser(email);
+    const user = await UserService.checkUser(email);
     // console.log(user);
 
-    if (!User) {
-      return res.json({ status: false, error: "User not found" });
+    if (!user) {
+      return res.json({ status: false, error: "user not found" });
     }
 
-    const isMatch = await User.comparePassword(password);
+    const isMatch = await user.comparePassword(password);
 
     if (isMatch === false) {
       throw new Error("Password not match");
     }
 
-    let tokenData = { _id: User._id, email: User.email };
+    let tokenData = { _id: user._id, email: user.email };
 
     const token = await UserService.generateToken(tokenData, "secretKey", "1h");
 
-    res.status(200).json({ status: true, token });
+    res.status(200).json({ status: true, token: token });
 
     return isMatch;
   } catch (error) {
     throw error;
   }
 };
-
