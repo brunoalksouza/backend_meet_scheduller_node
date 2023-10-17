@@ -2,7 +2,7 @@ const EventService = require("../services/event.services");
 
 exports.addEvent = async (req, res, next) => {
   try {
-    const { title, description, date, formatedDate, start, end } = req.body;
+    const { title, description, date, start, end } = req.body;
 
     const event = await EventService.addEvent(
       title,
