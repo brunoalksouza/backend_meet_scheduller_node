@@ -4,6 +4,7 @@ import { json } from "express"; // Import the json middleware
 import connection from "./config/db";
 const app = express();
 const port = 3001;
+const userRouter = require("./routers/user.router");
 
 app.use(
   cors({
@@ -12,6 +13,8 @@ app.use(
 );
 
 app.use(json());
+
+app.use("/", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
