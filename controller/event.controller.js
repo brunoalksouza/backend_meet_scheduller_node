@@ -23,6 +23,7 @@ exports.getEvent = async (req, res, next) => {
     const { date } = req.body;
 
     const event = await EventService.getEvent(date);
+    console.log(event);
 
     res.json({ status: true, success: event });
   } catch (error) {
