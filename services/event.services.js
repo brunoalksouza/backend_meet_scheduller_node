@@ -18,7 +18,7 @@ class EventService {
 
   static async getEvent(date) {
     try {
-      const eventData = await EventsModel.find({ date });
+      const eventData = await EventsModel.find({ date }).sort({ start: 1 });
       return eventData;
     } catch (error) {
       throw error;
